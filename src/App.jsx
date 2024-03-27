@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import Start from './Start'
 
 
 function App() {
 
   return (
     <>
+    <Start/>
     </>
   )
 }
