@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+#root {
+  --secondary-clr: #F5F7FB;
+  --accent-clr: #4D5B9E;
+  --answer-clr: #D6DBF5;
+  --txt-clr-dark: #293264;
+  --correct-clr: #94D7A2;
+  --wrong-clr: #F8BCBC;
+  --blob-warm-clr: #FFFAD1;
+  --blob-cold-clr: #DEEBF8;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+}
+
+body {
+  font-family: 'Karla', sans-serif;
+  background-color: var(--secondary-clr);
+}
+
+button {
+  font-family: inherit;
+}
+
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--txt-clr-dark);
+}
+
+.blob-top {
+  position: absolute;
+  top: -7em;
+  right: -5em;
+  transform: rotate(40deg);
+  fill: var(--blob-warm-clr);
+  width: 25vmax;
+  z-index: -1;
+  transform-origin: 50% 50%;
+}
+
+.blob-bottom {
+  position: absolute;
+  bottom: -8em;
+  left: -1em;
+  transform: rotate(80deg);
+  fill: var(--blob-cold-clr);
+  width: 20vmax;
+  z-index: -1;
+  transform-origin: 50% 50%;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.sub-heading {
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin: .5em 0 2em 0;
+}
+
+.btn {
+  background-color: var(--accent-clr);
+  border: none;
+  width: 190px;
+  height: 50px;
+  border-radius: 15px;
+  font-size: 1rem;
+  color: var(--secondary-clr);
+}
