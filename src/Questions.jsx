@@ -8,14 +8,15 @@ function Questions() {
         return (
             <div className="question-container">
                 <h3 className="question">{question.question}</h3>
-                {answerElements}
+                <div className="answers">{answerElements}</div>
             </div>
         )
     }) 
     return (
-        <main className="main-questions">
+        <main className=" main-questions">
+            <h1 className="heading">Quizzical</h1>
             {questionsElements}
-            <button className="btn">Check answers</button>
+            <button className="btn check-btn">Check answers</button>
         </main>
     )
 }
