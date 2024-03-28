@@ -4,7 +4,7 @@ import { questions } from "./test-data";
 function Questions(props) {
 
     const questionsElements = props.questions.map(question => {
-        const answerElements = question.answers.map(answer => <button className="answer-btns">{answer}</button>)
+        const answerElements = question.answers.map(answer => <button className="answer-btns" onClick={() => console.log(answer.id)}>{answer.answer}</button>)
         return (
             <div className="question-container">
                 <h3 key={question.question} className="question">{question.question}</h3>

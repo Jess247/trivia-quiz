@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import {decode} from 'html-entities'
-import { questions } from './test-data'
+import { nanoid } from 'nanoid'
 import Questions from './Questions'
 import Start from './Start'
 
@@ -10,7 +10,7 @@ function App() {
   const [allQuestions, setAllQuestions] = useState([])
   const [correctAnswer, setCorrectAnswer] = useState('')
   const [userAnswer, setUserAnswer] = useState('')
-  const [allQuestionsShuffled, setAllQuestionsShuffled] = useState([])
+  
 
   useEffect(() => {
     fetch('https://opentdb.com/api.php?amount=5&type=multiple')
@@ -22,21 +22,47 @@ function App() {
       })
       .then(data => {
         const questionObj = data.results.map(result => ({
+          id: nanoid(),
           question: decode(result.question),
-            answers: [...decode(result.incorrect_answers), decode(result.correct_answer)]
+          correctAnswer: decode(result.correct_answer),
+          answers: [...decode(result.incorrect_answers), decode(result.correct_answer)]
         }))
-        const answers = questionObj.map(question => shuffleAnswers(question.answers))
         setAllQuestions(questionObj)
       })
       .catch(err => console.log(err))
   }, [])
 
+  // useEffect(() => {
+  //   fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+  //     .then(res => {
+  //       if(!res.ok) {
+  //         throw res
+  //       }
+  //       return res.json()
+  //     })
+  //     .then(data => {
+  //       const questionObj = data.results.map(result => ({
+  //         id:nanoid(),
+  //         question: decode(result.question),
+  //         correctAnswer: decode(result.correct_answer),
+  //         answers: [...decode(result.incorrect_answers), decode(result.correct_answer)]
+  //       }))
+  //       setAllQuestions(questionObj)
+  //     })
+  //     .catch(err => console.log(err))
+  // }, [])
+
+  useEffect(() => {
+    const newAllQuestions = allQuestions.map(que => {
+      const newAnswers = que.answers.map(answer => ({answer:answer, selected: false, id: que.id}))
+      return {...que, answers: newAnswers}
+    })
+    setAllQuestions(newAllQuestions)
+  },[isQuiz])
+
+
   function startQuiz() {
     setIsQuiz(prevIsQuiz => !prevIsQuiz)
-  }
-
-  function shuffleAnswers(answers) {
-    return answers.sort( ()=>Math.random()-0.5);
   }
 
 
