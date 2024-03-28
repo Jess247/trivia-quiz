@@ -110,6 +110,7 @@ button {
 
 .answer-btns {
   margin-right: 1em;
+  margin-top: .5em;
   padding: .3em 1.5em;
   border-radius: 7.94px;
   border: 1px solid var(--txt-clr-dark);
