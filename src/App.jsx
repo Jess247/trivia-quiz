@@ -32,25 +32,6 @@ function App() {
       .catch(err => console.log(err))
   }, [])
 
-  // useEffect(() => {
-  //   fetch('https://opentdb.com/api.php?amount=5&type=multiple')
-  //     .then(res => {
-  //       if(!res.ok) {
-  //         throw res
-  //       }
-  //       return res.json()
-  //     })
-  //     .then(data => {
-  //       const questionObj = data.results.map(result => ({
-  //         id:nanoid(),
-  //         question: decode(result.question),
-  //         correctAnswer: decode(result.correct_answer),
-  //         answers: [...decode(result.incorrect_answers), decode(result.correct_answer)]
-  //       }))
-  //       setAllQuestions(questionObj)
-  //     })
-  //     .catch(err => console.log(err))
-  // }, [])
 
   useEffect(() => {
     const newAllQuestions = allQuestions.map(que => {
