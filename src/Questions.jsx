@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { questions } from "./test-data";
 
-function Questions() {
+function Questions(props) {
 
-    const questionsElements = questions.map(question => {
+    const questionsElements = props.questions.map(question => {
         const answerElements = question.answers.map(answer => <button className="answer-btns">{answer}</button>)
         return (
             <div className="question-container">
-                <h3 className="question">{question.question}</h3>
-                <div className="answers">{answerElements}</div>
+                <h3 key={question.question} className="question">{question.question}</h3>
+                <div  className="answers">{answerElements}</div>
             </div>
         )
     }) 
