@@ -25,6 +25,7 @@ body {
 
 button {
   font-family: inherit;
+  cursor: pointer;
 }
 .main, .main-questions {
   height: 100vh;
@@ -82,6 +83,10 @@ button {
   border-radius: 15px;
   font-size: 1rem;
   color: var(--secondary-clr);
+}
+
+.btn:hover {
+  background-color: var(--txt-clr-dark);
 }
 
 .main-questions {

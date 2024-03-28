@@ -7,7 +7,10 @@ import Start from './Start'
 
 function App() {
   const [isQuiz, setIsQuiz] = useState(false)
-  const [allQuestions, setAllQuestions] = useState(questions)
+  const [allQuestions, setAllQuestions] = useState([])
+  const [correctAnswer, setCorrectAnswer] = useState('')
+  const [userAnswer, setUserAnswer] = useState('')
+  const [allQuestionsShuffled, setAllQuestionsShuffled] = useState([])
 
   useEffect(() => {
     fetch('https://opentdb.com/api.php?amount=5&type=multiple')
