@@ -42,7 +42,7 @@ function Questions(props) {
         <main className=' main-questions'>
             <h1 className='heading'>Quizzical</h1>
             {questionsElements}
-            {props.isChecked ? <div className='score'><p>You scored <span>1</span>/5 correct answers</p><button className='btn ' onClick={() => props.checkAnswers()} >Play Again</button></div> : <button className='btn check-btn' onClick={() => props.checkAnswers()} >Check answers</button>}
+            {props.isChecked ? <div className='score' onClick={props.playAgain}><p>You scored <span>{props.score}</span>/5 correct answers</p><button className='btn ' onClick={() => props.checkAnswers()} >Play Again</button></div> : <button className='btn check-btn' onClick={() => props.checkAnswers()} >Check answers</button>}
         </main>
     )
 }
