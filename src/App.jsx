@@ -12,32 +12,34 @@ function App() {
   const [correctAnswers, setCorrectAnswers] = useState([])
   const [isChecked, setIsChecked] = useState(false)
   const [score, setScore] = useState(0)
+  const [dataFetchedInCurrentRound, setDataFetchedInCurrentRound] = useState(false)
 
   useEffect(() => {
-    fetch('https://opentdb.com/api.php?amount=5&type=multiple')
-      .then(res => {
-        if(!res.ok) {
-          throw res
-        }
-        return res.json()
-      })
-      .then(data => {
-        const questionObj = data.results.map(result =>
-            ({
+    if (isQuiz && !dataFetchedInCurrentRound) {
+      fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+        .then(res => {
+          if (!res.ok) {
+            throw res
+          }
+          return res.json()
+        })
+        .then(data => {
+          const questionObj = data.results.map(result => ({
             id: nanoid(),
             key: nanoid(),
             question: decode(result.question),
             correctAnswer: decode(result.correct_answer),
-            answers: [...decode(result.incorrect_answers), decode(result.correct_answer)]
-            }))
-        setAllQuestions(questionObj)
-
-        // loop through questions and save correct answers in new array
-        const corAns = questionObj.map(que => que.correctAnswer)
-        setCorrectAnswers(corAns)
-      })
-      .catch(err => console.log(err))
-  }, [isQuiz])
+            answers: [...result.incorrect_answers.map(decode), decode(result.correct_answer)]
+          }))
+          setAllQuestions(questionObj)
+          const corAns = questionObj.map(que => que.correctAnswer)
+          setCorrectAnswers(corAns);
+          setDataFetchedInCurrentRound(true)
+        })
+        .catch(err => console.log(err))
+    }
+  }, [isQuiz, dataFetchedInCurrentRound])
+  
 
 
   useEffect(() => {
