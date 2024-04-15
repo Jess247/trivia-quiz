@@ -28,7 +28,7 @@ function Questions(props) {
             }else {
                 styles = {backgroundColor: 'transparent'}
             }
-        return (<button key={answer.id}
+        return (<button
             className='answer-btns' 
             style={styles} 
                 onClick={() => props.selectAnswer(answer.id)}>{answer.answer}</button>)})
