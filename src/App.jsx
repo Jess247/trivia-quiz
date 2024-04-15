@@ -49,8 +49,8 @@ function App() {
       return {...que, answers: newAnswers}
     })
     setAllQuestions(newAllQuestions)
-    
-  },[isQuiz])
+    console.log(newAllQuestions)
+  },[dataFetchedInCurrentRound])
 
   useEffect(() => {
     const uAnswers = []
@@ -64,7 +64,7 @@ function App() {
 
 
   function startQuiz() {
-    setIsQuiz(prevIsQuiz => !prevIsQuiz)
+    setIsQuiz(true)
   }
 
   function shuffleAnswers(answers) {
@@ -101,8 +101,9 @@ function App() {
   }
 
   function playAgain() {
-    setIsQuiz(prevIsQuiz => !prevIsQuiz)
+    setIsQuiz(false)
     setIsChecked(false)
+    setDataFetchedInCurrentRound(false)
   }
 
   return (
