@@ -12,13 +12,14 @@ function Questions(props) {
     }
     const falseStyle = {
         backgroundColor: '#F8BCBC',
-        border:'none'
+        border:'none',
+        opacity:'.8'
     }
 
 
     const questionsElements = props.questions.map(question => {
         const answerElements = question.answers.map(answer => {
-            if(answer.selected && answer.correct) {
+            if(answer.answer === question.correctAnswer && props.isChecked) {
                 styles = correctStyle
             } else if(answer.selected && !answer.correct && props.isChecked) {
                 styles = falseStyle
@@ -27,7 +28,7 @@ function Questions(props) {
             }else {
                 styles = {backgroundColor: 'transparent'}
             }
-        return (<button 
+        return (<button key={answer.id}
             className='answer-btns' 
             style={styles} 
                 onClick={() => props.selectAnswer(answer.id)}>{answer.answer}</button>)})
